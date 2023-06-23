@@ -1,0 +1,77 @@
+public class zadanie41 {
+    public static void main(String[] args) {
+        int second = 12478519;
+
+        int year = 31536000;
+        int month = 2592000;
+        int week = 604800;
+        int day = 86400;
+        int hour = 3600;
+        int minute = 60;
+
+        if (second == 0) {
+            System.out.println("0 секунд");
+            return;
+        }
+
+        int years = second / year;
+        second -= years * year;
+        int months = second / month;
+        second -= months * month;
+        int weeks = second / week;
+        second -= weeks * week;
+        int days = second / day;
+        second -= days * day;
+        int hours = second / hour;
+        second -= hours * hour;
+        int minutes = second / minute;
+        second -= minutes * minute;
+
+        StringBuilder sb = new StringBuilder();
+        if (years > 0) {
+            sb.append(years).append(" ").append(padezi(years, "год", "года", "лет"));
+        }
+        if (months > 0) {
+            razdelitel(sb);
+            sb.append(months).append(" ").append(padezi(months, "месяц", "месяца", "месяцев"));
+        }
+        if (weeks > 0) {
+            razdelitel(sb);
+            sb.append(weeks).append(" ").append(padezi(weeks, "неделя", "недели", "недель"));
+        }
+        if (days > 0) {
+            razdelitel(sb);
+            sb.append(days).append(" ").append(padezi(days, "день", "дня", "дней"));
+        }
+        if (hours > 0) {
+            razdelitel(sb);
+            sb.append(hours).append(" ").append(padezi(hours, "час", "часа", "часов"));
+        }
+        if (minutes > 0) {
+            razdelitel(sb);
+            sb.append(minutes).append(" ").append(padezi(minutes, "минута", "минуты", "минут"));
+        }
+        if (second > 0) {
+            razdelitel(sb);
+            sb.append(second).append(" ").append(padezi(second, "секунда", "секунды", "секунд"));
+        }
+
+        System.out.println(sb);
+    }
+
+    private static void razdelitel(StringBuilder sb) {
+        if (sb.length() > 0) {
+            sb.append(", ");
+        }
+    }
+
+    private static String padezi(int number, String form1, String form2, String form5) {
+        if (number % 10 == 1 && number % 100 != 11) {
+            return form1;
+        } else if (number % 10 >= 2 && number % 10 <= 4 && (number % 100 < 10 || number % 100 >= 20)) {
+            return form2;
+        } else {
+            return form5;
+        }
+    }
+}
