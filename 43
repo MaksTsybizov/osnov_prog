@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class zadanie43 {
+    public static void main(String[] args) {
+        int povtor = 10;
+        int summa = 0;
+        int posledniy = 0;
+        ArrayList<int[]> array = new ArrayList<>();
+
+        for (int i = 0; i < povtor; i++) {
+            int count = i + 1;
+            array.add(new int[count]);
+
+            for (int j = 0; j < count; j++) {
+                array.get(i)[j] = (int) (Math.random() * 10);
+            }
+
+            int number = array.get(i)[posledniy];
+            summa += number;
+
+            boolean yslovie = Math.random() >= 0.5f;
+
+            if (yslovie == true) {
+                posledniy--;
+            } else {
+                posledniy++;
+            }
+
+            if (posledniy >= array.size()) {
+                posledniy = array.size() - 1;
+            } else {
+                posledniy = Math.max(posledniy, 0);
+            }
+
+            System.out.println(Arrays.toString(array.get(i)) + " / vibor = " + number);
+        }
+
+        System.out.println("Summma = " + summa);
+
+    }
+}
