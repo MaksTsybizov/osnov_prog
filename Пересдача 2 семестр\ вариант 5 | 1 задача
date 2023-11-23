@@ -1,4 +1,4 @@
-function primeFactorization(number) {
+|function primeFactorization(number) {
 let primeFactors = [];
 
 // Разложение на "2" пока число четное
