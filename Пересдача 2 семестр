@@ -1,0 +1,36 @@
+var num = 5;
+var arr = [1, 6, 5, 2, 7, 5, 1, 4, 3, 9, 8, 11, 10, 18];
+var result = [];
+
+function deleteRepeat(array) { //удаляем повторения из массива
+    var obj = {};
+
+    for (var i = 0; i < array.length; i++) {
+        var str = array[i];
+        obj[str] = true;
+    }
+
+    return Object.keys(obj);
+}
+
+function find(array, number) { // ищем уникальные значения
+    var x = null,
+        y = null;
+    array.forEach(function (i, value) {
+        if(number - value < number) {
+            x = number - value;
+
+            array.forEach(function (j, value2) {
+                if(x == value2 && j > i) {
+                    y = value;
+
+                    result.push(y +':' + x);
+                }
+            })
+        }
+    });
+}
+
+find(deleteRepeat(arr), num);
+
+console.log(result);
