@@ -1,36 +1,32 @@
-var num = 5;
-var arr = [1, 6, 5, 2, 7, 5, 1, 4, 3, 9, 8, 11, 10, 18];
-var result = [];
+function primeFactorization(number) {
+let primeFactors = [];
 
-function deleteRepeat(array) { //удаляем повторения из массива
-    var obj = {};
-
-    for (var i = 0; i < array.length; i++) {
-        var str = array[i];
-        obj[str] = true;
-    }
-
-    return Object.keys(obj);
+// Разложение на "2" пока число четное
+while (number % 2 === 0) {
+primeFactors.push(2);
+number /= 2;
 }
 
-function find(array, number) { // ищем уникальные значения
-    var x = null,
-        y = null;
-    array.forEach(function (i, value) {
-        if(number - value < number) {
-            x = number - value;
-
-            array.forEach(function (j, value2) {
-                if(x == value2 && j > i) {
-                    y = value;
-
-                    result.push(y +':' + x);
-                }
-            })
-        }
-    });
+// Поиск простых множителей, начиная с "3" до квадратного корня из числа
+for (let i = 3; i <= Math.sqrt(number); i += 2) {
+while (number % i === 0) {
+primeFactors.push(i);
+number /= i;
+}
 }
 
-find(deleteRepeat(arr), num);
+// Добавление оставшегося простого множителя (если он больше 2)
+if (number > 2) {
+primeFactors.push(number);
+}
 
-console.log(result);
+return primeFactors;
+}
+
+let number = 125;
+let primeFactors = primeFactorization(number);
+
+console.log(`Простые множители числа ${number}:`);
+primeFactors.forEach(factor => {
+console.log(factor);
+});
